@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.InputMismatchException;
 public class loggbok {
     static boolean isRunning = true;
     static Scanner sc = new Scanner(System.in);
@@ -16,8 +17,7 @@ public class loggbok {
         System.out.println("[3] Printa alla sparade loggar");
         System.out.println("[4] Ta bort en sparad logg");
         System.out.println("[5] Stäng loggboken");
-        int input = sc.nextInt();
-        switch(input){
+        switch(inputToInt()){
             
             case 1:
             logg();
@@ -41,7 +41,7 @@ public class loggbok {
             break;
 
             default:
-            System.out.println("Bruh du har val alternativ framför dig varför testar du annat");
+            System.out.println("Ogiltigt input");
             break;
             }
         }
@@ -62,8 +62,13 @@ public class loggbok {
         String soklogg = sc.nextLine().toUpperCase();
         for(bok i : loggar){
             if(i.titel.equals(soklogg)){
+                System.out.println("Logg hittades: ");
                 System.out.println(i);
             }
+            else{
+                System.out.println("Logg existerar inte.");
+            }
+            
         }
     }
     public static void printAllLoggs(){
@@ -75,11 +80,26 @@ public class loggbok {
         Scanner sc = new Scanner(System.in);
         System.out.println("Vilken logg vill du ta bort?");
         String tabort = sc.nextLine().toUpperCase();
-        for(bok k : loggar){
-            if(k.titel.equals(tabort)){
-                loggar.remove(k);
+        for(int i = 0; i < loggar.size(); i++){
+            System.out.print("Tar bort loggen: " + loggar);
+            loggar.remove(i);
             }
-        }
-
+        
     }
-}
+    public static int inputToInt(){
+        boolean input2 = true;
+        int nummer = 0;
+        while(input2){
+            Scanner sc = new Scanner(System.in);
+            try{
+                nummer = sc.nextInt();
+                input2 = false;
+            }
+            catch(InputMismatchException e){
+                System.out.println("Du kan bara ge ett nummer mellan 1-5");
+                }
+        
+            }
+            return nummer;
+    } 
+    }
