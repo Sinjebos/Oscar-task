@@ -3,13 +3,14 @@ import datetime
 import os
 
 date = datetime.datetime.now()
+## creates a new file with .txt and lets the user add title, text and automaticlly adds the date it was created ##
 def newFile():
     new_file = input("Create a new file or use a file that already excist\nFile: ") + ".txt"
     file_title = input("Title for you file: ").upper()
     file_text = input("Add what you want to your file: ")
     my_file = open(new_file, 'a')
     my_file.write("\n" + file_title + "\n" + file_text + "\n" + str(date))
-
+## removes file that user inputs if it excist ##
 def removeFile():
     remove_file = input("Which file would you like to remove?\nTitle: ") + ".txt"
     if remove_file.endswith(".txt"):
@@ -17,13 +18,13 @@ def removeFile():
     else:
         print("Can't remove that file")
 
-
+## print all files that ends with .txt ##
 def printallLogs():
     read_all_files = ""
     if read_all_files.endswith(".txt"):
         my_file = open(read_all_files, 'r')
         print(my_file.read())
-
+## user search for a file that ends with .txt ##
 def searchForLogg():
     read_file = input("What file would you like to search for?\nFile:: ") + ".txt"
     if read_file.endswith(".txt"):
@@ -32,7 +33,7 @@ def searchForLogg():
     else:
         print("You dont have any file with that name")
 
-
+## code running ##
 print("Welcome to your virtual filebook")
 isRunning = True
 while isRunning:
